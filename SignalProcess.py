@@ -90,24 +90,6 @@ class Fourier:
 
         return cross_spec
 
-    def InverseFourierTransform(self, coeff_list):
-        A, B, a, b = coeff_list
-        lfr, lwn = A.shape
-
-        Ck = (A + 1j * B)*lfr
-        Sk = (a + 1j * b)*lwn
-
-        Ck = np.concatenate([Ck, Ck[::-1]], axis=0)
-        Sk = np.concatenate([Sk, Sk[::-1]], axis=0)
-
-        arr_fft = (np.fft.ifft(Ck, axis=0) + 1j * np.fft.ifft(Sk, axis=0))*lwn
-
-        arr_fft = np.concatenate([arr_fft, arr_fft[:, ::-1]], axis=1)
-
-        arr_recon = np.fft.ifft(arr_fft, axis=1).real
-
-        return arr_recon
-
 class EOF:
     def __init__(self, arr) -> None:
         self.arr = arr
