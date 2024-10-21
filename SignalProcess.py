@@ -25,7 +25,7 @@ class Fourier:
 
         
 
-        cross_spec = (fft1 * np.conj(fft2)) / (np.prod(fft1.shape)*2)
+        cross_spec = (fft1 * np.conj(fft2)) / (np.prod(fft1.shape))
 
         cross_spec[1:] *= 2
 
